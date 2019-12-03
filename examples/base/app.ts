@@ -18,14 +18,12 @@ axios({
 axios({
   method: 'post',
   url: '/base/post',
+  headers: {
+    'content-type': 'application/json',
+    'Accept': 'application/json, text/plain, */*'
+  },
   data: {
     a: 1,
     b: 2
   }
-})
-
-axios({
-  method: 'post',
-  url: '/base/buffer',
-  data: new Int32Array([21, 32])
 })
