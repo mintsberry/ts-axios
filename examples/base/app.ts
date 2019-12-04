@@ -27,3 +27,15 @@ axios({
     b: 2
   }
 })
+
+axios({
+  method: 'post',
+  url: '/base/post',
+  responseType: 'json',
+  data: {
+    a: 3,
+    b: 4
+  }
+}).then((res)=>{
+  console.log(res)
+})
