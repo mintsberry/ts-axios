@@ -1,3 +1,3 @@
-import axios from './axiso'
+import axios from './axios'
 export * from './types'
 export default axios

@@ -16,21 +16,23 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 const router = express.Router()
 
-router.get('/simple/get', function(req, res) {
+router.get('/simple/get', function (req, res) {
   res.json({
     msg: 'Hello World'
   })
 })
-router.get('/base/get', function(req, res) {
+router.get('/base/get', function (req, res) {
   res.json(req.query)
 })
-router.post('/base/post', function(req, res) {
+router.post('/base/post', function (req, res) {
   res.json(req.body)
 })
-router.post('/base/buffer', function(req, res) {
+router.post('/base/buffer', function (req, res) {
   let msg = []
   req.on('data', (chunk) => {
     if (chunk) {
@@ -42,7 +44,7 @@ router.post('/base/buffer', function(req, res) {
     res.json(buf.toJSON())
   })
 })
-router.get('/error/get', function(req, res) {
+router.get('/error/get', function (req, res) {
   if (Math.random() > 0.5) {
     res.json({
       msg: 'Hello'
@@ -52,15 +54,18 @@ router.get('/error/get', function(req, res) {
     res.end()
   }
 })
-router.get('/error/timeout', function(req, res) {
-  setTimeout(() => {
-    res.json({
-      msg: 'Timeout'
-    })
-  }, 3000);
+router.get('/extend/get', function (req, res) {
+  res.json({
+    msg: 'Hello World'
+  })
+})
+router.post('/extend/post', function (req, res) {
+  res.json({
+    msg: 'Hello World'
+  })
 })
 app.use(router)
 const port = process.env.PORT || 8080
-module.exports = app.listen(port, ()=>{
+module.exports = app.listen(port, () => {
   console.log('Server startup')
 })
